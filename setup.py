@@ -7,7 +7,7 @@ with open("README.md", mode="r", encoding="utf-8") as readme_file:
 import platform
 tensorflow_version = "tensorflow>=2.0.0"
 mac_version = platform.mac_ver()
-if mac_version:
+if mac_version and 'arm' in mac_version[-1]:
     tensorflow_version = "tensorflow-macos>=2.6.0"
 
 setuptools.setup(
