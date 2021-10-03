@@ -3,6 +3,13 @@ import setuptools
 with open("README.md", mode="r", encoding="utf-8") as readme_file:
     long_description = readme_file.read()
 
+# Need to do some magic on whether this is osx arm or not.
+import platform
+tensorflow_version = "tensorflow>=2.0.0"
+mac_version = platform.mac_ver()
+if mac_version:
+    tensorflow_version = "tensorflow-macos>=2.6.0"
+
 setuptools.setup(
     name="DialogTag",
     version="1.1.3",
@@ -16,7 +23,7 @@ setuptools.setup(
     install_requires=[
         'transformers>=3.0.0',
         'tqdm',
-        'tensorflow>=2.0.0'
+        tensorflow_version
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
