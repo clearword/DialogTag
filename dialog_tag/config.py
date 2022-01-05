@@ -1,3 +1,5 @@
+import os
+
 class_labels = {
         "MAPPING" : {'fo_o_fw_"_by_bc': '0', 'ft': '1', 'fc': '2', 'qw': '3', '^g': '4', 'bh': '5', 'qy': '6', 'qrr': '7',
         'fp': '8', 'qo': '9', 'bk': '10', 'h': '11', 'sv': '12', 'ba': '13', 'nn': '14', '^h': '15', '^2': '16', 'aap_am': '17', 
@@ -7,15 +9,15 @@ class_labels = {
     }
 
 model_params = {
-        "num_labels": 38
+        "num_labels": int(os.getenv("DIALOGTAG_NUM_LABELS", 38))
     }
 
 model_location = {
-        "MODEL" : "/.dialog-tag/models",
-        "label_mapping" : "/label_map.txt"
+        "MODEL" : os.getenv("DIALOGTAG_MODEL_CACHE", "/.dialog-tag/models"),
+        "label_mapping" : os.getenv("DIALOGTAG_LABEL_MAP", "/label_map.txt")
     }
 
 model_download_link = {
-        "distilbert-base-uncased" : "https://www.dropbox.com/sh/crq7khtdd99u4mo/AABdQb8W1lJ37Cm-CfOSISuBa?dl=1",
-        "bert-base-uncased" : "https://www.dropbox.com/sh/ajlwp36obho2cbe/AADHTY4_PhSOAQzveCJIna4Va?dl=1"
+        "distilbert-base-uncased" : os.getenv("DIALOGTAG_DISTILBERT_BASE_UNCASED", "https://www.dropbox.com/sh/crq7khtdd99u4mo/AABdQb8W1lJ37Cm-CfOSISuBa?dl=1"),
+        "bert-base-uncased" : os.getenv("DIALOGTAG_BERT_BASE_UNCASED", "https://www.dropbox.com/sh/ajlwp36obho2cbe/AADHTY4_PhSOAQzveCJIna4Va?dl=1")
 }
